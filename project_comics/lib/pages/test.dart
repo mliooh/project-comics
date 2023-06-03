@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:project_comics/components/buttons.dart';
-import 'package:project_comics/pages/signin.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class test extends StatefulWidget {
@@ -32,7 +31,7 @@ class _testState extends State<test> {
                   /*---------------------------------------Welcome to Ultimate Comics, where imagination comes to life---------------------------------------*/
 
                   Padding(
-                    padding: EdgeInsets.only(right: 10.0),
+                    padding: const EdgeInsets.only(right: 10.0),
                     child: Text(
                       'Welcome to Ultimate Comics,',
                       style: GoogleFonts.josefinSans(fontSize: 47),
