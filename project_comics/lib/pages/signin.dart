@@ -28,22 +28,35 @@ class _signInState extends State<signin> {
 
                           Padding(
                             padding: const EdgeInsets.only(left: 10.0),
-                            child: Text(
-                              "Welcome Back,",
-                              style: GoogleFonts.josefinSans(
-                                  fontStyle: FontStyle.italic,
-                                  fontSize: 40,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Welcome Back,",
+                                  style: GoogleFonts.josefinSans(
+                                      fontStyle: FontStyle.italic,
+                                      fontSize: 40,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white),
+                                ),
+                              ],
                             ),
                           ),
                           const SizedBox(height: 10),
-                          Text(
-                            "SignIn to Continue",
-                            style: GoogleFonts.josefinSans(
-                                fontStyle: FontStyle.italic,
-                                fontSize: 26,
-                                color: Colors.white),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "SignIn to Continue",
+                                  style: GoogleFonts.josefinSans(
+                                      fontStyle: FontStyle.italic,
+                                      fontSize: 26,
+                                      color: Colors.white),
+                                ),
+                              ],
+                            ),
                           ),
                           const SizedBox(height: 45),
 

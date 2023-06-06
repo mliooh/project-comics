@@ -22,7 +22,7 @@ class _signupState extends State<signup> {
                     padding: const EdgeInsets.only(left: 2.0),
                     child: SingleChildScrollView(
                         child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                           // salutation
 
@@ -43,12 +43,20 @@ class _signupState extends State<signup> {
                             ),
                           ),
                           const SizedBox(height: 10),
-                          Text(
-                            "Create an Account",
-                            style: GoogleFonts.josefinSans(
-                                fontStyle: FontStyle.italic,
-                                fontSize: 26,
-                                color: Colors.white),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10.0),
+                                child: Text(
+                                  "Create an Account",
+                                  style: GoogleFonts.josefinSans(
+                                      fontStyle: FontStyle.italic,
+                                      fontSize: 26,
+                                      color: Colors.white),
+                                ),
+                              ),
+                            ],
                           ),
                           const SizedBox(height: 45),
 
@@ -130,7 +138,7 @@ class _signupState extends State<signup> {
                                             BorderRadius.circular(10)),
                                     child: Image.asset(
                                       "lib/images/applelogo.png",
-                                      scale: 5,
+                                      height: 20,
                                     ),
                                   ),
                                 ]),

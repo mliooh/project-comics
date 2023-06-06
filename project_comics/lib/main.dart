@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_comics/authentication/signin_signup.dart';
 import 'package:project_comics/pages/splash_screen.dart';
+import 'package:project_comics/pages/welcome.dart';
 
 import 'pages/test.dart';
 
