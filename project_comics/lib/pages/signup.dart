@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_comics/components/buttons.dart';
@@ -12,6 +13,55 @@ class signup extends StatefulWidget {
 }
 
 class _signupState extends State<signup> {
+  void signUp() async {
+    // loading circle
+
+    showDialog(
+        context: context,
+        builder: (context) => const Center(
+              child: CircularProgressIndicator(),
+            ));
+
+    //password matching parameter
+    if (passwordTextController.text != ConfirmPasswordTextController.text) {
+      // pop loading circle
+
+      Navigator.pop(context);
+
+      //error message
+      displayMessage("Password doesn't match:");
+      return;
+    }
+
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailTextController.text,
+          password: passwordTextController.text);
+
+      if (context.mounted) Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      // pop loading circle
+      Navigator.pop(context);
+
+      displayMessage(e.code);
+    }
+  }
+
+  // dialog error message
+  void displayMessage(String message) {
+    showDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+              title: Text('message'),
+            ));
+  }
+
+  // text editing controller
+
+  final emailTextController = TextEditingController();
+  final passwordTextController = TextEditingController();
+  final ConfirmPasswordTextController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +72,7 @@ class _signupState extends State<signup> {
                     padding: const EdgeInsets.only(left: 2.0),
                     child: SingleChildScrollView(
                         child: Column(
-                             mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                           // salutation
 
@@ -62,8 +112,9 @@ class _signupState extends State<signup> {
 
                           // email input field
 
-                          const textField(
+                          textField(
                             hintText: "Enter your email",
+                            controller: emailTextController,
                             obscuretext: false,
                             textInputType: TextInputType.emailAddress,
                           ),
@@ -72,8 +123,9 @@ class _signupState extends State<signup> {
 
                           //password input Field
 
-                          const textField(
+                          textField(
                             hintText: "Password",
+                            controller: passwordTextController,
                             obscuretext: true,
                             textInputType: TextInputType.visiblePassword,
                           ),
@@ -82,15 +134,16 @@ class _signupState extends State<signup> {
 
                           // confirm password
 
-                          const textField(
+                          textField(
                             hintText: "Confirm Password",
+                            controller: ConfirmPasswordTextController,
                             obscuretext: true,
                             textInputType: TextInputType.visiblePassword,
                           ),
 
                           const SizedBox(height: 20),
 
-                          buttons(text: "SignUp", onTap: () {}),
+                          Buttons(text: "SignUp", onTap: signUp),
                           const SizedBox(
                             height: 40,
                           ),

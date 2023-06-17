@@ -1,7 +1,6 @@
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:project_comics/authentication/signin_signup.dart';
+import 'package:project_comics/authentication/auth.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -19,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => const signinSignup(),
+            builder: (context) => const Auth(),
           ));
     });
   }

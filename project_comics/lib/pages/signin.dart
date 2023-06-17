@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_comics/components/buttons.dart';
@@ -12,6 +13,48 @@ class signin extends StatefulWidget {
 }
 
 class _signInState extends State<signin> {
+  //text editing controller
+
+  final emailTextController = TextEditingController();
+  final passwordTextController = TextEditingController();
+
+  // sign in function
+  void signIn() async {
+    // loading circle
+    showDialog(
+        context: context,
+        builder: (context) => const Center(
+              child: CircularProgressIndicator(),
+            ));
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailTextController.text,
+          password: passwordTextController.text);
+
+      // pop loading circle
+
+      if (context.mounted) Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      // pop loading circle
+
+      Navigator.pop(context);
+
+      displayMessage(e.code);
+
+      // pop loading circle
+    }
+  }
+
+  // error messag on login parameters fail
+
+  void displayMessage(String message) {
+    showDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+              title: Text('message'),
+            ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,8 +105,9 @@ class _signInState extends State<signin> {
 
                           // email input field
 
-                          const textField(
+                          textField(
                             hintText: "Enter your email",
+                            controller: emailTextController,
                             obscuretext: false,
                             textInputType: TextInputType.emailAddress,
                           ),
@@ -72,8 +116,9 @@ class _signInState extends State<signin> {
 
                           //password input Field
 
-                          const textField(
+                          textField(
                             hintText: "Password",
+                            controller: passwordTextController,
                             obscuretext: true,
                             textInputType: TextInputType.visiblePassword,
                           ),
@@ -103,7 +148,7 @@ class _signInState extends State<signin> {
 
                           const SizedBox(height: 15),
 
-                          buttons(text: "SignIn", onTap: () {}),
+                          Buttons(text: "SignIn", onTap: signIn),
                           const SizedBox(
                             height: 40,
                           ),

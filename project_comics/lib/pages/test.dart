@@ -47,7 +47,7 @@ class _testState extends State<test> {
 
                   /*---------------------------------------------------------Get Started----------------------------------------------*/
 
-                  buttons(
+                  Buttons(
                     onTap: () {},
                     text: 'Get Started',
                   ),
@@ -57,7 +57,7 @@ class _testState extends State<test> {
 
                   /*---------------------------------------------------Login In----------------------------------------------------*/
 
-                  buttons(
+                  Buttons(
                     onTap: () {},
                     text: 'SignIn',
                   )

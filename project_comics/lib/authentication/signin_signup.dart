@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:project_comics/pages/signin.dart';
 import 'package:project_comics/pages/signup.dart';
 
-class signinSignup extends StatefulWidget {
-  const signinSignup({super.key});
+class SignInSignUp extends StatefulWidget {
+  const SignInSignUp({super.key});
 
   @override
-  State<signinSignup> createState() => _signinSignupState();
+  State<SignInSignUp> createState() => _SignInSignUpState();
 }
 
-class _signinSignupState extends State<signinSignup> {
+class _SignInSignUpState extends State<SignInSignUp> {
   //show the signin page
   bool showsignin = true;
 

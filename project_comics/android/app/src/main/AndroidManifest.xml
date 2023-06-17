@@ -3,7 +3,7 @@ xmlns:tools="http://schemas.android.com/tools">
     <application
         android:label="project_comics"
         android:name="${applicationName}"
-        android:icon="@mipmap/comics_icon.png"
+        android:icon="@mipmap/comics_icon"
         tools:replace="android:icon">
         <activity
             android:name=".MainActivity"

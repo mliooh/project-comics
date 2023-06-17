@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "174986398130",
+    "project_id": "project-comics",
+    "storage_bucket": "project-comics.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:174986398130:android:b55ec11881dabbfb7cfcab",
+        "android_client_info": {
+          "package_name": "com.example.project_comics"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "174986398130-dlpg9tfb01q2vsrk7mjj04hn2tbl0e7d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJThcrD_OJn6U-Ft4vnA5dVXMhZv_E4Ng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "174986398130-dlpg9tfb01q2vsrk7mjj04hn2tbl0e7d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

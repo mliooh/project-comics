@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_comics/authentication/signin_signup.dart';
 import 'package:project_comics/components/buttons.dart';
-import 'package:project_comics/pages/signin.dart';
 import 'package:project_comics/pages/splash_screen.dart';
 
 class Welcome extends StatefulWidget {
@@ -18,7 +16,7 @@ class _WelcomeState extends State<Welcome> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(
                   'lib/images/ultimatecomics.png',
@@ -84,7 +82,7 @@ class _WelcomeState extends State<Welcome> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => SplashScreen()));
+                            builder: (context) => const SplashScreen()));
                   })
             ],
           ),
