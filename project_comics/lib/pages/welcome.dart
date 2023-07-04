@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_comics/components/buttons.dart';
 import 'package:project_comics/pages/splash_screen.dart';
@@ -69,14 +69,14 @@ class _WelcomeState extends State<Welcome> {
 
               // get started
 
-              buttons(text: 'Get started', onTap: () {}),
+              Buttons(text: 'Get started', onTap: () {}),
               const SizedBox(
                 height: 20,
               ),
 
               //signin
 
-              buttons(
+              Buttons(
                   text: 'SignIn',
                   onTap: () {
                     Navigator.push(
@@ -89,3 +89,4 @@ class _WelcomeState extends State<Welcome> {
         ));
   }
 }
+*/

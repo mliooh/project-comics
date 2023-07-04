@@ -1,4 +1,4 @@
-
+/*
 import 'package:flutter/material.dart';
 import 'package:project_comics/authentication/auth.dart';
 
@@ -38,3 +38,4 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
+*/

@@ -24,7 +24,7 @@ class _SignInSignUpState extends State<SignInSignUp> {
     if (showsignin) {
       return signin(onTap: togglepages);
     } else {
-      return signup(onTap: togglepages);
+      return signUp(onTap: togglepages);
     }
   }
 }

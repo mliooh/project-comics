@@ -1,66 +1,22 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_comics/components/buttons.dart';
 import 'package:project_comics/components/textfield.dart';
 
-class signup extends StatefulWidget {
+class signUp extends StatefulWidget {
   final Function()? onTap;
-  const signup({super.key, required this.onTap});
+  const signUp({super.key, required this.onTap});
 
   @override
-  State<signup> createState() => _signupState();
+  State<signUp> createState() => _signUpState();
 }
 
-class _signupState extends State<signup> {
-  void signUp() async {
-    // loading circle
-
-    showDialog(
-        context: context,
-        builder: (context) => const Center(
-              child: CircularProgressIndicator(),
-            ));
-
-    //password matching parameter
-    if (passwordTextController.text != ConfirmPasswordTextController.text) {
-      // pop loading circle
-
-      Navigator.pop(context);
-
-      //error message
-      displayMessage("Password doesn't match:");
-      return;
-    }
-
-    try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailTextController.text,
-          password: passwordTextController.text);
-
-      if (context.mounted) Navigator.pop(context);
-    } on FirebaseAuthException catch (e) {
-      // pop loading circle
-      Navigator.pop(context);
-
-      displayMessage(e.code);
-    }
-  }
-
-  // dialog error message
-  void displayMessage(String message) {
-    showDialog(
-        context: context,
-        builder: (context) => const AlertDialog(
-              title: Text('message'),
-            ));
-  }
-
+class _signUpState extends State<signUp> {
   // text editing controller
 
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
-  final ConfirmPasswordTextController = TextEditingController();
+  final confirmPasswordTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -136,14 +92,14 @@ class _signupState extends State<signup> {
 
                           textField(
                             hintText: "Confirm Password",
-                            controller: ConfirmPasswordTextController,
+                            controller: confirmPasswordTextController,
                             obscuretext: true,
                             textInputType: TextInputType.visiblePassword,
                           ),
 
                           const SizedBox(height: 20),
 
-                          Buttons(text: "SignUp", onTap: signUp),
+                          Buttons(text: "SignUp", onTap: () {}),
                           const SizedBox(
                             height: 40,
                           ),
