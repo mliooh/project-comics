@@ -1,11 +1,18 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import 'package:project_comics/components/buttons.dart';
 import 'package:project_comics/components/textfield.dart';
+import 'package:project_comics/pages/collections.dart';
+import 'package:project_comics/pages/signin.dart';
+
+import '../authentication/auth_service.dart';
 
 class signUp extends StatefulWidget {
-  final Function()? onTap;
-  const signUp({super.key, required this.onTap});
+  const signUp({
+    super.key,
+  });
 
   @override
   State<signUp> createState() => _signUpState();
@@ -13,10 +20,26 @@ class signUp extends StatefulWidget {
 
 class _signUpState extends State<signUp> {
   // text editing controller
-
+  final AuthService _auth = AuthService();
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
   final confirmPasswordTextController = TextEditingController();
+
+  Future<void> _signUp() async {
+    String email = emailTextController.text;
+    String password = passwordTextController.text;
+    User? user = await _auth.registerWithEmailAndPassword(email, password);
+
+    if (user != null) {
+      // Navigate to the home screen or other authenticated pages
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Homepage()),
+      );
+    } else {
+      // Show an error message or do something else if sign-up fails
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +122,7 @@ class _signUpState extends State<signUp> {
 
                           const SizedBox(height: 20),
 
-                          Buttons(text: "SignUp", onTap: () {}),
+                          Buttons(text: "SignUp", onTap: _signUp),
                           const SizedBox(
                             height: 40,
                           ),
@@ -166,7 +189,12 @@ class _signUpState extends State<signUp> {
                               ),
                               const SizedBox(width: 5),
                               GestureDetector(
-                                onTap: widget.onTap,
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: ((context) => signin())));
+                                },
                                 child: Text(
                                   "Sign In",
                                   style: GoogleFonts.josefinSans(

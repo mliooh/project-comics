@@ -1,11 +1,18 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project_comics/authentication/auth_service.dart';
+
 import 'package:project_comics/components/buttons.dart';
 import 'package:project_comics/components/textfield.dart';
+import 'package:project_comics/pages/collections.dart';
+import 'package:project_comics/pages/signup.dart';
 
 class signin extends StatefulWidget {
-  final Function()? onTap;
-  const signin({super.key, required this.onTap});
+  const signin({
+    super.key,
+  });
 
   @override
   State<signin> createState() => _signInState();
@@ -16,6 +23,48 @@ class _signInState extends State<signin> {
 
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  
+
+  Future<void> _signIn() async {
+    String email = emailTextController.text;
+    String password = passwordTextController.text;
+    
+
+    try {
+    UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+
+    if (userCredential.user != null) {
+        // Navigate to the home screen or other authenticated pages
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => Homepage()),
+        );
+    } else {
+      // Show an error message or do something else if sign-in fails
+    }
+  }
+  catch (e) {
+      print("Error during email/password sign in: $e");
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text("Error"),
+          content: Text("Failed to sign in. Please check your credentials."),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text("OK"),
+            ),
+          ],
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +96,7 @@ class _signInState extends State<signin> {
                               ],
                             ),
                           ),
+
                           const SizedBox(height: 10),
                           Padding(
                             padding: const EdgeInsets.only(left: 10.0),
@@ -110,7 +160,7 @@ class _signInState extends State<signin> {
 
                           const SizedBox(height: 15),
 
-                          Buttons(text: "SignIn", onTap: () {}),
+                          Buttons(text: "SignIn", onTap: _signIn),
                           const SizedBox(
                             height: 40,
                           ),
@@ -177,7 +227,12 @@ class _signInState extends State<signin> {
                               ),
                               const SizedBox(width: 5),
                               GestureDetector(
-                                onTap: widget.onTap,
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: ((context) => signUp())));
+                                }, //widget.onTap,
                                 child: Text(
                                   "Sign up",
                                   style: GoogleFonts.josefinSans(

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 import 'package:project_comics/pages/signin.dart';
 import 'package:project_comics/pages/signup.dart';
 
@@ -28,3 +28,4 @@ class _SignInSignUpState extends State<SignInSignUp> {
     }
   }
 }
+*/
