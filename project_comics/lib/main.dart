@@ -3,7 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:project_comics/authentication/auth_service.dart';
 import 'package:project_comics/firebase_options.dart';
-import 'package:project_comics/pages/collections.dart';
+
+import 'package:project_comics/pages/homepage.dart';
 import 'package:project_comics/pages/signin.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;

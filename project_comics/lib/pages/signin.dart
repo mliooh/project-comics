@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_comics/authentication/auth_service.dart';
 
 import 'package:project_comics/components/buttons.dart';
 import 'package:project_comics/components/textfield.dart';
@@ -25,30 +24,27 @@ class _signInState extends State<signin> {
   final passwordTextController = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  
-
   Future<void> _signIn() async {
     String email = emailTextController.text;
     String password = passwordTextController.text;
-    
 
     try {
-    UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
 
-    if (userCredential.user != null) {
+      if (userCredential.user != null) {
         // Navigate to the home screen or other authenticated pages
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => Homepage()),
+          MaterialPageRoute(builder: (context) => Collection()),
         );
-    } else {
-      // Show an error message or do something else if sign-in fails
-    }
-  }
-  catch (e) {
+      } else {
+        // Show an error message or do something else if sign-in fails
+      }
+    } catch (e) {
       print("Error during email/password sign in: $e");
       showDialog(
         context: context,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_comics/pages/SearchPage.dart';
+import 'package:project_comics/pages/collections.dart';
+import 'package:project_comics/pages/homepage.dart';
 
 class MyBottomNavBar extends StatelessWidget {
   const MyBottomNavBar({
@@ -22,7 +24,12 @@ class MyBottomNavBar extends StatelessWidget {
       items: [
         BottomNavigationBarItem(
             icon: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Homepage()));
+                },
                 icon: const Icon(
                   Icons.home,
                 )),
@@ -37,6 +44,18 @@ class MyBottomNavBar extends StatelessWidget {
                   Icons.search,
                 )),
             label: 'Search'),
+        BottomNavigationBarItem(
+            icon: IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Collection()));
+                },
+                icon: const Icon(
+                  Icons.collections_bookmark,
+                )),
+            label: 'Collection'),
       ],
     );
   }

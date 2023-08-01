@@ -34,7 +34,7 @@ class _signUpState extends State<signUp> {
       // Navigate to the home screen or other authenticated pages
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => Homepage()),
+        MaterialPageRoute(builder: (context) => Collection()),
       );
     } else {
       // Show an error message or do something else if sign-up fails
