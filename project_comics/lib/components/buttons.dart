@@ -8,7 +8,7 @@ class Buttons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap, // Replace the empty function with the onTap function
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(18),
         margin: const EdgeInsets.symmetric(horizontal: 30),

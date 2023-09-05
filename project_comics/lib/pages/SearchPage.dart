@@ -13,6 +13,7 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   String _query = "%22Master%20of%";
   List<Map<String, dynamic>> _comics = [];
+  List<dynamic> filteredComics = [];
 
   Future<void> _getComics() async {
     // https://comicvine.gamespot.com/api/search/?api_key=fc80e60481c2429713aa9d3dbd43a0c9e0e50e07&format=json&sort=name:asc&resources=issue&query=%22Master%20of%
@@ -33,31 +34,72 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade900,
       appBar: AppBar(
-        backgroundColor: Colors.grey.shade800,
-        title: const Text("Search Comics"),
+        backgroundColor: Colors.transparent,
+        title: const Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(right: 40.0),
+              child: Text(
+                "Search",
+              ),
+            )
+          ],
+        ),
       ),
-      body: Column(
-        children: [
-          TextField(
-            decoration: const InputDecoration(hintText: "Search comics"),
-            onChanged: (value) {
-              _query = value;
-              _getComics();
-            },
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: SafeArea(
+          child: Column(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(22),
+                ),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.only(left: 10.0, right: 10, top: 40),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.grey.shade700,
+                        borderRadius: BorderRadius.circular(20)),
+                    child: TextField(
+                      style: const TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.white),
+                            borderRadius: BorderRadius.circular(20)),
+                        prefixIcon: const Icon(
+                          Icons.search,
+                          color: Colors.white,
+                        ),
+                        hintText: "Search comics",
+                        hintStyle: const TextStyle(color: Colors.white),
+                      ),
+                      onChanged: (value) {
+                        _query = value;
+                        _getComics();
+                      },
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _comics.length,
+                  itemBuilder: (context, index) {
+                    final comic = _comics[index];
+                    return ListTile(
+                      title: Text(comic["name"]),
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: _comics.length,
-              itemBuilder: (context, index) {
-                final comic = _comics[index];
-                return ListTile(
-                  title: Text(comic["name"]),
-                );
-              },
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
